@@ -1,0 +1,102 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chatterbox-tts"
+version = "2.0.0"
+description = "Modular TTS system with enhanced voice management and document processing"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Chatterbox Team", email = "team@chatterbox.dev"}
+]
+keywords = ["tts", "text-to-speech", "audio", "ai", "ml"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "pydantic>=2.0.0",
+    "transformers>=4.30.0",
+    "torch>=2.0.0",
+    "soundfile>=0.12.0",
+    "librosa>=0.10.0",
+    "numpy>=1.21.0",
+    "pyyaml>=6.0",
+    "click>=8.0.0",
+    "rich>=13.0.0",
+    "python-multipart>=0.0.6",
+    "aiofiles>=23.0.0",
+    "httpx>=0.25.0",
+    "psutil>=5.9.0",
+]
+
+[project.optional-dependencies]
+cuda = [
+    "torch[cuda]>=2.0.0",
+    "torchaudio>=2.0.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+]
+docker = [
+    "gunicorn>=21.0.0",
+    "prometheus-client>=0.17.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/chatterbox-team/chatterbox-tts"
+Documentation = "https://docs.chatterbox.dev"
+Repository = "https://github.com/chatterbox-team/chatterbox-tts.git"
+Issues = "https://github.com/chatterbox-team/chatterbox-tts/issues"
+
+[project.scripts]
+chatterbox = "chatterbox_tts.cli.main:main"
+
+[project.entry-points."console_scripts"]
+chatterbox-tts = "chatterbox_tts.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"

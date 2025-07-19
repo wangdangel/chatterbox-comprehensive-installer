@@ -1,0 +1,19 @@
+# Essential dependencies for simplified Chatterbox TTS setup
+
+# Core dependencies
+fastapi>=0.68.0
+uvicorn[standard]>=0.15.0
+pydantic>=1.8.0
+python-multipart>=0.0.5
+
+# Audio processing
+numpy>=1.21.0
+soundfile>=0.10.3
+scipy>=1.7.0
+
+# Optional but recommended
+librosa>=0.8.0
+
+# Development
+pytest>=6.0.0
+black>=21.0.0
